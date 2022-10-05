@@ -71,7 +71,7 @@ const currencies = new Map([
   ['GBP', 'Pound sterling'],
 ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 // SLICE METHOD   ----- Does not mutate the original array
@@ -114,3 +114,24 @@ console.log(arr.at(-1));
 console.log('joel'.at(0));
 console.log('joel'.at(-2));
 */
+
+// FOREACH method
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+for (const [index, mov] of movements.entries()) {
+  if (mov > 0) {
+    console.log(`Movement ${index + 1}: You deposited ${mov}`);
+  } else {
+    console.log(`Movement ${index + 1}: You withdrew ${Math.abs(mov)}`);
+  }
+}
+console.log('----FOREACH----');
+movements.forEach(function (mov, index, arr) {
+  console.log(arr);
+  if (mov > 0) {
+    console.log(`Movement ${index + 1}: You deposited ${mov}`);
+  } else {
+    console.log(`Movement ${index + 1}: You withdrew ${Math.abs(mov)}`);
+  }
+});
