@@ -75,7 +75,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 // SLICE METHOD   ----- Does not mutate the original array
-
+/*
 let arr = ['a', 'b', 'c', 'd', 'e'];
 console.log(arr.slice(2));
 console.log(arr.slice(2, 4));
@@ -98,3 +98,19 @@ let arr3 = arr.concat(arr2);
 
 // JOIN METHOD
 console.log(arr3.join('='));
+*/
+
+/*
+let arr = [22, 333, 554];
+console.log(arr[0]);
+console.log(arr.at(0));
+
+// getting the last element
+console.log(arr[arr.length - 1]);
+console.log(arr.slice(-1)[0]);
+console.log(arr.at(-1));
+
+// using at method in strings
+console.log('joel'.at(0));
+console.log('joel'.at(-2));
+*/
