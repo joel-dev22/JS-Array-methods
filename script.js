@@ -74,3 +74,27 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+// SLICE METHOD   ----- Does not mutate the original array
+
+let arr = ['a', 'b', 'c', 'd', 'e'];
+console.log(arr.slice(2));
+console.log(arr.slice(2, 4));
+console.log(arr.slice(-1));
+console.log(arr.slice(-3));
+console.log(arr.slice(0, -3));
+console.log(arr);
+
+// SPLICE METHOD === Does change the original array
+// console.log(arr.splice(2));
+// console.log(arr.splice(-1));
+
+// reverse method --- change the original array
+let arr2 = ['i', 'h', 'g', 'f'];
+console.log(arr2.reverse());
+console.log(arr2);
+
+// CONCAT METHOD === Does not change
+let arr3 = arr.concat(arr2);
+
+// JOIN METHOD
+console.log(arr3.join('='));
