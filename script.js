@@ -152,19 +152,33 @@ movements.forEach(function (mov, index, arr) {
 */
 
 // Map
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
 
-currencies.forEach((value, key) => {
-  console.log(`${key} is the abbreviation of ${value}`);
-});
+// currencies.forEach((value, key) => {
+//   console.log(`${key} is the abbreviation of ${value}`);
+// });
 
-// Set
+// // Set
 
-const currenciesUnique = new Set(['USD', 'EUR', 'EUR', 'USD', 'GBP', 'GBP']);
-currenciesUnique.forEach((key, value, set) => {
-  console.log(`${key}: ${value}`);
-});
+// const currenciesUnique = new Set(['USD', 'EUR', 'EUR', 'USD', 'GBP', 'GBP']);
+// currenciesUnique.forEach((key, value, set) => {
+//   console.log(`${key}: ${value}`);
+// });
+
+// Coding Challenge 1
+
+const checkDogs = function (dogsJulia, dogsKate) {
+  const shallowCopyJulia = dogsJulia.slice(1, -2);
+  const newArr = shallowCopyJulia.concat(dogsKate);
+  console.log(newArr);
+  newArr.forEach((age, num) => {
+    const check = age >= 3 ? 'adult' : 'puppy';
+    console.log(`Dog number ${num + 1} is ${check}`);
+  });
+};
+
+checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
