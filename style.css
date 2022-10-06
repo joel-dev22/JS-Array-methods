@@ -1,4 +1,4 @@
-/*
+/* 
  * Use this CSS to learn some intersting techniques,
  * in case you're wondering how I built the UI.
  * Have fun! 😁
@@ -16,7 +16,7 @@ html {
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: #444;
   background-color: #f3f3f3;
   height: 100vh;
@@ -60,6 +60,7 @@ nav {
 .login__input:focus {
   outline: none;
   border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
 }
 
 .login__input::placeholder {
@@ -224,8 +225,7 @@ nav {
 .operation--close {
   background-image: linear-gradient(to top left, #e52a5a, #ff585f);
 }
-
-h2 {
+*/ h2 {
   margin-bottom: 1.5rem;
   font-size: 1.7rem;
   font-weight: 600;
