@@ -85,7 +85,7 @@ displayMovements(account1.movements);
 /////////////////////////////////////////////////
 // LECTURES
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 // SLICE METHOD   ----- Does not mutate the original array
@@ -170,7 +170,7 @@ movements.forEach(function (mov, index, arr) {
 // });
 
 // Coding Challenge 1
-
+/*
 const checkDogs = function (dogsJulia, dogsKate) {
   const shallowCopyJulia = dogsJulia.slice(1, -2);
   const newArr = shallowCopyJulia.concat(dogsKate);
@@ -182,3 +182,13 @@ const checkDogs = function (dogsJulia, dogsKate) {
 };
 
 checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+*/
+
+// Map method
+
+const euroToUSD = 1.1;
+
+const movementsUSD = movements.map(mov => mov * euroToUSD);
+
+console.log(movements);
+console.log(movementsUSD);
