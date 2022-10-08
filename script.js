@@ -63,6 +63,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 containerApp.style.opacity = 1;
 
+// Build and display movements
 const displayMovements = function (movements) {
   containerMovements.innerHTML = '';
   movements.forEach((mov, index) => {
@@ -80,6 +81,29 @@ const displayMovements = function (movements) {
 };
 
 displayMovements(account1.movements);
+
+// Creating usename in each account
+const displayUsername = accs => {
+  accs.forEach(acc => {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name.at(0))
+      .join('');
+  });
+};
+
+displayUsername(accounts);
+
+/*
+const user = 'Joel Thampy Mathew';
+const username = username
+  .toLowerCase()
+  .split(' ')
+  .map(name => name.at(0))
+  .join('');
+console.log(username);
+*/
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -185,10 +209,11 @@ checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 */
 
 // Map method
-
+/*
 const euroToUSD = 1.1;
 
 const movementsUSD = movements.map(mov => mov * euroToUSD);
 
 console.log(movements);
 console.log(movementsUSD);
+*/
