@@ -217,3 +217,11 @@ const movementsUSD = movements.map(mov => mov * euroToUSD);
 console.log(movements);
 console.log(movementsUSD);
 */
+
+// Filter method
+
+const deposits = movements.filter(mov => mov > 0);
+console.log(deposits);
+
+const withdrawals = movements.filter(mov => mov < 0);
+console.log(withdrawals);
