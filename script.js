@@ -241,9 +241,23 @@ console.log(balance);
 */
 
 // Max value in movements array
-
+/*
 const max = movements.reduce((acc, mov) => {
   if (acc > mov) return acc;
   else return mov;
 }, movements[0]);
 console.log(max);
+*/
+
+// Coding Challenge
+
+const calcAverageHumanAge = ages => {
+  const humanAges = ages.map(age => (age <= 2 ? age * 2 : 16 + age * 4));
+  console.log(humanAges);
+  const newAges = humanAges.filter(age => age >= 18);
+  console.log(newAges);
+  const avgAge = newAges.reduce((acc, age) => acc + age, 0) / newAges.length;
+  return avgAge;
+};
+
+calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
