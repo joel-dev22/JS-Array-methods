@@ -274,12 +274,10 @@ console.log(max);
 // Coding Challenge
 
 const calcAverageHumanAge = ages => {
-  const humanAges = ages.map(age => (age <= 2 ? age * 2 : 16 + age * 4));
-  console.log(humanAges);
-  const newAges = humanAges.filter(age => age >= 18);
-  console.log(newAges);
-  const avgAge = newAges.reduce((acc, age) => acc + age, 0) / newAges.length;
-  return avgAge;
+  return ages
+    .map(age => (age <= 2 ? age * 2 : 16 + age * 4))
+    .filter(age => age >= 18)
+    .reduce((acc, age, i, arr) => acc + age / arr.length, 0);
 };
 
-calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
