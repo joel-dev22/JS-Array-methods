@@ -281,3 +281,6 @@ const calcAverageHumanAge = ages => {
 };
 
 console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(account);
