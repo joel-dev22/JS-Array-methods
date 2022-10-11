@@ -61,8 +61,6 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-containerApp.style.opacity = 1;
-
 // Build and display movements
 const displayMovements = function (movements) {
   containerMovements.innerHTML = '';
@@ -80,37 +78,31 @@ const displayMovements = function (movements) {
   });
 };
 
-displayMovements(account1.movements);
-
 // Display the balance in each movements array
 const calcDisplayBalance = movements => {
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
   labelBalance.innerText = `${balance}€`;
 };
 
-calcDisplayBalance(account1.movements);
-
 // Display the summary
-const calcDisplaySummary = movements => {
-  const income = movements
+const calcDisplaySummary = acc => {
+  const income = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov);
   labelSumIn.textContent = `${income}€`;
 
-  const outcome = movements
+  const outcome = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumOut.textContent = `${Math.abs(outcome)}€`;
 
   const interest = movements
     .filter(mov => mov > 0)
-    .map(deposit => (deposit * 1.2) / 100)
+    .map(deposit => (deposit * acc.interestRate) / 100)
     .filter(int => int >= 1)
     .reduce((acc, int) => acc + int, 0);
   labelSumInterest.textContent = ` ${interest}€`;
 };
-
-calcDisplaySummary(account1.movements);
 
 // Creating usename in each account
 const displayUsername = accs => {
@@ -124,6 +116,39 @@ const displayUsername = accs => {
 };
 
 displayUsername(accounts);
+
+// Event Handlers
+let currentAccount;
+btnLogin.addEventListener('click', e => {
+  e.preventDefault();
+
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+  console.log(currentAccount);
+
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    // Display UI and message
+    labelWelcome.textContent = `Welcome back, ${currentAccount.owner
+      .split(' ')
+      .at(0)}`;
+
+    containerApp.style.opacity = 1;
+
+    // Display movements
+    displayMovements(currentAccount.movements);
+    // Display balance
+    calcDisplayBalance(currentAccount.movements);
+
+    // Display summary
+    calcDisplaySummary(currentAccount);
+
+    // Clear input fields
+    inputLoginUsername.value = '';
+    inputLoginPin.value = '';
+    inputLoginPin.blur();
+  }
+});
 
 /*
 const user = 'Joel Thampy Mathew';
@@ -272,7 +297,7 @@ console.log(max);
 */
 
 // Coding Challenge
-
+/*
 const calcAverageHumanAge = ages => {
   return ages
     .map(age => (age <= 2 ? age * 2 : 16 + age * 4))
@@ -284,3 +309,4 @@ console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
 
 const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 console.log(account);
+*/
