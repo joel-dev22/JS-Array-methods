@@ -79,9 +79,9 @@ const displayMovements = function (movements) {
 };
 
 // Display the balance in each movements array
-const calcDisplayBalance = movements => {
-  const balance = movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.innerText = `${balance}€`;
+const calcDisplayBalance = acc => {
+  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.innerText = `${acc.balance}€`;
 };
 
 // Display the summary
@@ -117,7 +117,18 @@ const displayUsername = accs => {
 
 displayUsername(accounts);
 
+const updateUI = function (acc) {
+  // Display movements
+  displayMovements(acc.movements);
+  // Display balance
+  calcDisplayBalance(acc);
+  // Display summary
+  calcDisplaySummary(acc);
+};
+
 // Event Handlers
+
+// Login functionality
 let currentAccount;
 btnLogin.addEventListener('click', e => {
   e.preventDefault();
@@ -135,18 +146,41 @@ btnLogin.addEventListener('click', e => {
 
     containerApp.style.opacity = 1;
 
-    // Display movements
-    displayMovements(currentAccount.movements);
-    // Display balance
-    calcDisplayBalance(currentAccount.movements);
-
-    // Display summary
-    calcDisplaySummary(currentAccount);
+    // Update UI
+    updateUI(currentAccount);
 
     // Clear input fields
     inputLoginUsername.value = '';
     inputLoginPin.value = '';
     inputLoginPin.blur();
+  }
+});
+
+// Transfer money
+btnTransfer.addEventListener('click', function (e) {
+  e.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const receiverAcc = accounts.find(
+    acc => acc.username === inputTransferTo.value
+  );
+  console.log(amount);
+  console.log(receiverAcc);
+
+  // Clear the transfer input fields
+  inputTransferTo.value = '';
+  inputTransferAmount.value = '';
+
+  if (
+    amount > 0 &&
+    receiverAcc &&
+    currentAccount.balance >= amount &&
+    receiverAcc?.username !== currentAccount.username
+  ) {
+    currentAccount.movements.push(-amount);
+    receiverAcc.movements.push(amount);
+
+    // Update UI
+    updateUI(currentAccount);
   }
 });
 
