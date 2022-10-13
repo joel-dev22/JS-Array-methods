@@ -184,6 +184,24 @@ btnTransfer.addEventListener('click', function (e) {
   }
 });
 
+// Requesting Loan
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    // Add movement
+    currentAccount.movements.push(amount);
+
+    // Update UI
+    updateUI(currentAccount);
+
+    // Clear the input field
+    inputLoanAmount.value = '';
+  }
+});
+
 // Closing the account
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
@@ -365,3 +383,12 @@ console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
 const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 console.log(account);
 */
+
+// Some method
+/*
+console.log(movements.includes(-130));
+console.log(movements.some(mov => mov === -1350));
+*/
+
+// Every method
+console.log(account4.movements.every(mov => mov > -80));
