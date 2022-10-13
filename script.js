@@ -62,9 +62,12 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 // Build and display movements
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
-  movements.forEach((mov, index) => {
+
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach((mov, index) => {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     const html = `
       <div class="movements__row">
@@ -221,6 +224,14 @@ btnClose.addEventListener('click', function (e) {
     containerApp.style.opacity = 0;
   }
   inputCloseUsername.value = inputClosePin = '';
+});
+
+// Sorting functionality
+let sorted = false;
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
 });
 
 /*
@@ -391,4 +402,25 @@ console.log(movements.some(mov => mov === -1350));
 */
 
 // Every method
-console.log(account4.movements.every(mov => mov > -80));
+// console.log(account4.movements.every(mov => mov > -80));
+
+// Flat and FlatMap methods
+/*
+const arr = [1, [2, [3, 5], 4], 5, 3, [4, [1, 5, 7], 2]];
+console.log(arr.flat(2));
+
+const overallBalance = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance);
+*/
+
+// Sorting an array
+// console.log(movements);
+// console.log(Number(movements.sort()));
+
+movements.sort((a, b) => {
+  if (a > b) return -1;
+  if (b > a) return 1;
+});
+console.log(movements);
